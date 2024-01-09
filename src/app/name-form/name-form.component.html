@@ -1,0 +1,57 @@
+<div class="head">
+<p class="p1">Reactive Form</p>
+</div>
+
+
+
+
+<div  class="r-form">
+<button class="btn" (click)="toggleFormVisibility()">Sign Up</button>
+   <div *ngIf="isFormVisible" class="signup-form">
+    <form  [formGroup]="nameForm" (ngSubmit)="onSubmit()">
+         
+          <div class="i-fields">
+            <!-- Property Binding -->
+            <label for="fullName">FULL NAME:</label>
+            <input type="text" id="fullName" formControlName="fullName" [value]="nameForm.get('fullName').value" />
+    
+            <!-- Interpolation -->
+            <p *ngIf="nameForm.get('fullName').hasError('required') && nameForm.get('fullName').touched" class="error-message">Full Name is required.</p>
+            <p *ngIf="nameForm.get('fullName').hasError('minlength') && nameForm.get('fullName').touched" class="error-message">Full Name must be at least 3 characters long.</p>
+            <p *ngIf="nameForm.get('fullName').hasError('maxlength') && nameForm.get('fullName').touched" class="error-message">Full Name cannot be more than 30 characters long.</p>
+          </div>
+          
+          <div class="i-fields">
+            <label for="address">ADDRESS:</label>
+            <input type="text" id="address" formControlName="address" [value]="nameForm.get('address').value" />
+            <p *ngIf="nameForm.get('address').hasError('required') && nameForm.get('address').touched" class="error-message">Address is required.</p>
+            <p *ngIf="nameForm.get('address').hasError('minlength') && nameForm.get('address').touched" class="error-message">Address must be at least 6 characters long.</p>
+            <p *ngIf="nameForm.get('address').hasError('maxlength') && nameForm.get('address').touched" class="error-message">Address cannot be more than 30 characters long.</p>
+           </div>
+          
+          <div class="i-fields">
+            <label for="email">EMAIL:</label>
+            <input type="text" id="email" formControlName="email" [value]="nameForm.get('email').value" />
+            <p *ngIf="nameForm.get('email').hasError('required') && nameForm.get('email').touched" class="error-message">Email is required.</p>
+            <p *ngIf="nameForm.get('email').hasError('email') && nameForm.get('email').touched" class="error-message">Invalid email format.</p>
+            </div>
+          
+          <div class="i-fields">
+            <label for="contact">CONTACT:</label>
+            <input type="text" id="contact" formControlName="contact" [value]="nameForm.get('contact').value" />
+            <p *ngIf="nameForm.get('contact').hasError('required') && nameForm.get('contact').touched" class="error-message">Contact is required.</p>
+            <p *ngIf="nameForm.get('contact').hasError('pattern') && nameForm.get('contact').touched" class="error-message">Invalid contact format. (Should be a 10-digit number)</p>
+           </div>
+          <!-- Event Binding -->
+          <button class="btn" type="submit" [disabled]="nameForm.invalid">Submit</button>
+          
+      
+    </form>
+
+
+    
+   </div>
+
+
+</div>
+  
